@@ -1,0 +1,22 @@
+// 기본 CSS 설정
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+body {
+	width: 1440px;
+	height: 100%;
+	padding: 0 100px;
+	margin: 0 auto !important;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
