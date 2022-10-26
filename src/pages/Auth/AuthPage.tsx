@@ -7,7 +7,7 @@ const AuthPage = () => {
 	const [title, setTitle] = useState<string>('로그인');
 
 	const { values, onChangeHandler } = useInput({
-		initialValue: { firstInput: '', secondInput: '' },
+		initialValue: { email: '', password: '', isEmailValid: false, isPasswordValid: false },
 	});
 
 	return (
@@ -24,8 +24,8 @@ const AuthPage = () => {
 					<p>
 						<input
 							type="text"
-							name="firstInput"
-							value={values.firstInput}
+							name="email"
+							value={values.email}
 							placeholder="email"
 							onChange={onChangeHandler}
 						/>
@@ -34,14 +34,20 @@ const AuthPage = () => {
 					<p>
 						<input
 							type="password"
-							name="secondInput"
-							value={values.secondInput}
+							name="password"
+							value={values.password}
 							placeholder="password"
 							onChange={onChangeHandler}
 						/>
 					</p>
 
-					<button className={styles.activate}>{title}</button>
+					<button
+						className={
+							values.isEmailValid && values.isPasswordValid ? styles.activate : styles.disabled
+						}
+					>
+						{title}
+					</button>
 				</form>
 
 				{title === '로그인' && (
