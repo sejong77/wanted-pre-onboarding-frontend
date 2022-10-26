@@ -27,7 +27,11 @@ const AuthPage = () => {
 					<button className={styles.activate}>{title}</button>
 				</form>
 
-				<p className={styles.signup}>회원가입 하러가기</p>
+				{title === '로그인' && (
+					<p className={styles.signup} onClick={() => setTitle('회원가입')}>
+						회원가입 하러가기
+					</p>
+				)}
 			</div>
 		</div>
 	);
