@@ -8,8 +8,13 @@ const useInput = ({ initialValue }: { initialValue: InputProps }) => {
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 
-		setValues((prevState) => {
-			return { ...prevState, [name]: value };
+		setValues((prev) => {
+			return {
+				...prev,
+				[name]: value,
+				isEmailValid: name === 'email' ? value.includes('@') : prev.isEmailValid,
+				isPasswordValid: name === 'password' ? value.trim().length > 7 : prev.isPasswordValid,
+			};
 		});
 	};
 
