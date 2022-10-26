@@ -1,9 +1,14 @@
 import styles from './AuthPage.module.scss';
 
 import React, { useState } from 'react';
+import useInput from '../../hooks/useInput';
 
 const AuthPage = () => {
 	const [title, setTitle] = useState<string>('로그인');
+
+	const { values, onChangeHandler } = useInput({
+		initialValue: { firstInput: '', secondInput: '' },
+	});
 
 	return (
 		<div className={styles.container}>
@@ -17,11 +22,23 @@ const AuthPage = () => {
 					}}
 				>
 					<p>
-						<input type="text" name="email" placeholder="email" />
+						<input
+							type="text"
+							name="firstInput"
+							value={values.firstInput}
+							placeholder="email"
+							onChange={onChangeHandler}
+						/>
 					</p>
 
 					<p>
-						<input type="password" name="pwd" placeholder="password" />
+						<input
+							type="password"
+							name="secondInput"
+							value={values.secondInput}
+							placeholder="password"
+							onChange={onChangeHandler}
+						/>
 					</p>
 
 					<button className={styles.activate}>{title}</button>
