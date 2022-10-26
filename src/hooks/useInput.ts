@@ -15,3 +15,5 @@ const useInput = ({ initialValue }: { initialValue: InputProps }) => {
 
 	return { values, onChangeHandler };
 };
+
+export default useInput;
