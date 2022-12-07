@@ -4,3 +4,10 @@ export interface InputProps {
 	isEmailValid: boolean;
 	isPasswordValid: boolean;
 }
+
+export interface TodoListProps {
+	id: number;
+	todo: string;
+	isCompleted: false;
+	userId: number;
+}
