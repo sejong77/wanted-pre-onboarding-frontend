@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
 
-import { callAPI } from '../../api/api';
+import { callPostAPI } from '../../api/api';
 import { getAccessToken, setAccessToken } from '../../lib/AuthLocalStorage';
 
 const AuthPage = () => {
@@ -18,7 +18,7 @@ const AuthPage = () => {
 
 	const onSubmitForm = () => {
 		if (title === '회원가입') {
-			callAPI('auth/signup', { email: values.email, password: values.password }).then(
+			callPostAPI('auth/signup', { email: values.email, password: values.password }).then(
 				(res) => {
 					console.log('회원가입 데이터: ', res);
 					alert('회원가입에 성공했습니다.');
@@ -30,7 +30,7 @@ const AuthPage = () => {
 				}
 			);
 		} else {
-			callAPI('auth/signin', { email: values.email, password: values.password }).then(
+			callPostAPI('auth/signin', { email: values.email, password: values.password }).then(
 				(res) => {
 					setAccessToken(res.data.access_token);
 					alert('로그인에 성공했습니다.');
