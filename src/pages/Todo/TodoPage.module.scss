@@ -19,19 +19,35 @@
 }
 
 .title {
-	margin: 12px 0 24px 0;
-	font-size: 36px;
+	margin: 12px;
+	font-size: 48px;
 	font-weight: bold;
 }
 
 .item {
 	display: flex;
 	align-items: center;
-	margin: 8px 0;
+	justify-content: space-between;
+	margin: 12px 0;
 	padding: 8px;
+	color: #999999;
 
-	span {
-		margin-left: 8px;
+	.center {
+		display: flex;
+		align-items: center;
+		font-size: 18px;
+
+		.icon {
+			margin-right: 8px;
+		}
+	}
+
+	.icon:hover {
+		cursor: pointer;
+	}
+
+	.delete:hover {
+		color: #ed4a61;
 	}
 }
 
@@ -40,5 +56,9 @@
 	bottom: -42px;
 	left: 50%;
 	transform: translateX(-50%);
-	color: #b8e6af;
+	color: #80e36c;
+}
+
+.create:hover {
+	cursor: pointer;
 }
