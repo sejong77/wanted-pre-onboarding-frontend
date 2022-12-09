@@ -2,7 +2,7 @@ import styles from './TodoPage.module.scss';
 
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import { useEffect, useState } from 'react';
@@ -13,6 +13,11 @@ import { TodoListProps } from '../../interfaces/interface';
 const TodoPage = () => {
 	const [todos, setTodos] = useState<TodoListProps[]>([]);
 	const [item, setItem] = useState<number>(0);
+	const [toggle, setToggle] = useState<boolean>(false);
+
+	const onToggle = () => {
+		setToggle((prev) => !prev);
+	};
 
 	const getTodos = () => {
 		callGetAPI('/todos').then((res) => {
@@ -56,8 +61,12 @@ const TodoPage = () => {
 					))}
 				</ul>
 
-				<div className={styles.create}>
-					<AddCircleRoundedIcon sx={{ fontSize: 70 }} />
+				<div className={styles.btn__area}>
+					<AddRoundedIcon
+						sx={{ fontSize: 55 }}
+						className={`${styles.createBtn} ${toggle && styles.toggle}`}
+						onClick={() => onToggle()}
+					/>
 				</div>
 			</div>
 		</div>
