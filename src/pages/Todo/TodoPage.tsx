@@ -5,7 +5,7 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { callGetAPI, callPostAPI } from '../../api/api';
 import { TodoListProps } from '../../interfaces/interface';
@@ -14,8 +14,9 @@ const TodoPage = () => {
 	const [todos, setTodos] = useState<TodoListProps[]>([]);
 	const [item, setItem] = useState<number>(0);
 	const [toggle, setToggle] = useState<boolean>(false);
-
 	const [createContent, setCreateContent] = useState<string>('');
+
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const onToggle = () => {
 		setToggle((prev) => !prev);
@@ -44,7 +45,11 @@ const TodoPage = () => {
 
 	useEffect(() => {
 		getTodos();
-	}, []);
+
+		if (toggle) {
+			inputRef.current.focus();
+		}
+	}, [toggle]);
 
 	return (
 		<div className={styles.container}>
@@ -82,6 +87,7 @@ const TodoPage = () => {
 				{toggle && (
 					<div className={styles.input}>
 						<input
+							ref={inputRef}
 							type="text"
 							placeholder="할 일을 입력 후, Enter를 누르세요."
 							onKeyDown={onKeyDown}
