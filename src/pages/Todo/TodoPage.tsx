@@ -5,9 +5,9 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { callGetAPI } from '../../api/api';
+import { callGetAPI, callPostAPI } from '../../api/api';
 import { TodoListProps } from '../../interfaces/interface';
 
 const TodoPage = () => {
@@ -15,8 +15,24 @@ const TodoPage = () => {
 	const [item, setItem] = useState<number>(0);
 	const [toggle, setToggle] = useState<boolean>(false);
 
+	const [createContent, setCreateContent] = useState<string>('');
+
 	const onToggle = () => {
 		setToggle((prev) => !prev);
+		setCreateContent('');
+	};
+
+	const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === 'Enter') {
+			createTodos();
+		}
+	};
+
+	const createTodos = () => {
+		callPostAPI('/todos', { todo: createContent }).then((res) => {
+			console.log('createTodos: ', res.data);
+			getTodos();
+		});
 	};
 
 	const getTodos = () => {
@@ -33,33 +49,49 @@ const TodoPage = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
-				<div className={styles.title}>Todo List</div>
+				<div className={styles.content}>
+					<div className={styles.title}>Todo List</div>
 
-				<ul className={styles.list}>
-					{todos.map((todo) => (
-						<li
-							key={todo.id}
-							className={styles.item}
-							onMouseEnter={() => setItem(todo.id)}
-							onMouseLeave={() => setItem(0)}
-						>
-							<div className={styles.center}>
-								{todo.isCompleted ? (
-									<CheckBoxIcon className={styles.icon} />
-								) : (
-									<CheckBoxOutlineBlankIcon className={styles.icon} />
-								)}
-								{todo.todo}
-							</div>
+					<ul className={styles.list}>
+						{todos.map((todo) => (
+							<li
+								key={todo.id}
+								className={styles.item}
+								onMouseEnter={() => setItem(todo.id)}
+								onMouseLeave={() => setItem(0)}
+							>
+								<div className={styles.center}>
+									{todo.isCompleted ? (
+										<CheckBoxIcon className={styles.icon} />
+									) : (
+										<CheckBoxOutlineBlankIcon className={styles.icon} />
+									)}
+									{todo.todo}
+								</div>
 
-							<div className={styles.center}>
-								{item === todo.id && (
-									<DeleteRoundedIcon className={`${styles.delete} ${styles.icon}`} />
-								)}
-							</div>
-						</li>
-					))}
-				</ul>
+								<div className={styles.center}>
+									{item === todo.id && (
+										<DeleteRoundedIcon className={`${styles.delete} ${styles.icon}`} />
+									)}
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				{toggle && (
+					<div className={styles.input}>
+						<input
+							type="text"
+							placeholder="할 일을 입력 후, Enter를 누르세요."
+							onKeyDown={onKeyDown}
+							value={createContent}
+							onChange={(e) => {
+								setCreateContent(e.target.value);
+							}}
+						/>
+					</div>
+				)}
 
 				<div className={styles.btn__area}>
 					<AddRoundedIcon
