@@ -1,0 +1,61 @@
+.container {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #f9f9f9;
+	width: 500px;
+	height: 180px;
+	z-index: 20;
+	text-align: center;
+
+	.title {
+		padding: 12px;
+		background-color: #4dbeff;
+		color: #ffffff;
+		font-size: 18px;
+	}
+
+	.wrapper {
+		margin: 18px 0;
+		padding: 0 12px;
+
+		input {
+			padding: 8px 0;
+			width: 100%;
+		}
+
+		.btn__area {
+			margin: 24px 0;
+
+			span {
+				margin: 0 12px;
+				padding: 8px 12px;
+				border-radius: 6px;
+				color: #ffffff;
+			}
+
+			span:hover {
+				cursor: pointer;
+			}
+
+			.edit {
+				background-color: #4dbeff;
+			}
+
+			.cancel {
+				background-color: #bebebe;
+			}
+		}
+	}
+}
+
+.backdrop {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, 0.4);
+}
