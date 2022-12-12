@@ -26,3 +26,12 @@ export const callGetAPI = async (url: string) => {
 		throw new Error(e);
 	}
 };
+
+export const callDeleteAPI = async (url: string) => {
+	try {
+		const response = await API.delete(url);
+		return response;
+	} catch (e: any) {
+		throw new Error(e);
+	}
+};

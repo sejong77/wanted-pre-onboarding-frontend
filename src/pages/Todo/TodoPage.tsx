@@ -7,7 +7,7 @@ import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import React, { useEffect, useRef, useState } from 'react';
 
-import { callGetAPI, callPostAPI } from '../../api/api';
+import { callDeleteAPI, callGetAPI, callPostAPI } from '../../api/api';
 import { TodoListProps } from '../../interfaces/interface';
 
 const TodoPage = () => {
@@ -32,6 +32,12 @@ const TodoPage = () => {
 	const createTodos = () => {
 		callPostAPI('/todos', { todo: createContent }).then((res) => {
 			console.log('createTodos: ', res.data);
+			getTodos();
+		});
+	};
+
+	const deleteTodos = (id: number) => {
+		callDeleteAPI(`/todos/${id}`).then(() => {
 			getTodos();
 		});
 	};
@@ -76,7 +82,12 @@ const TodoPage = () => {
 
 								<div className={styles.center}>
 									{item === todo.id && (
-										<DeleteRoundedIcon className={`${styles.delete} ${styles.icon}`} />
+										<DeleteRoundedIcon
+											className={`${styles.delete} ${styles.icon}`}
+											onClick={() => {
+												deleteTodos(todo.id);
+											}}
+										/>
 									)}
 								</div>
 							</li>
