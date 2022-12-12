@@ -9,5 +9,5 @@ export interface TodoListProps {
 	id: number;
 	todo: string;
 	isCompleted: false;
-	userId: number;
+	userId?: number;
 }
