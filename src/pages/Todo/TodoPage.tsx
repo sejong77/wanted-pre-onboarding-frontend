@@ -3,6 +3,7 @@ import styles from './TodoPage.module.scss';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import EditIcon from '@mui/icons-material/Edit';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import React, { useEffect, useRef, useState } from 'react';
@@ -82,12 +83,16 @@ const TodoPage = () => {
 
 								<div className={styles.center}>
 									{item === todo.id && (
-										<DeleteRoundedIcon
-											className={`${styles.delete} ${styles.icon}`}
-											onClick={() => {
-												deleteTodos(todo.id);
-											}}
-										/>
+										<>
+											<EditIcon className={`${styles.edit} ${styles.icon}`} />
+
+											<DeleteRoundedIcon
+												className={`${styles.delete} ${styles.icon}`}
+												onClick={() => {
+													deleteTodos(todo.id);
+												}}
+											/>
+										</>
 									)}
 								</div>
 							</li>
