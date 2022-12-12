@@ -6,18 +6,29 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+
+import TodoEdit from '../../components/TodoEdit/TodoEdit';
 
 import { callDeleteAPI, callGetAPI, callPostAPI } from '../../api/api';
 import { TodoListProps } from '../../interfaces/interface';
 
+import ModalContext from '../../contexts/Modal/ModalContext';
+
 const TodoPage = () => {
+	const [editTodo, setEditTodo] = useState<TodoListProps>({
+		id: 0,
+		todo: '',
+		isCompleted: false,
+	});
 	const [todos, setTodos] = useState<TodoListProps[]>([]);
 	const [item, setItem] = useState<number>(0);
 	const [toggle, setToggle] = useState<boolean>(false);
 	const [createContent, setCreateContent] = useState<string>('');
 
 	const inputRef = useRef<HTMLInputElement>(null);
+
+	const { isEditModal, setEditModalHandler } = useContext(ModalContext);
 
 	const onToggle = () => {
 		setToggle((prev) => !prev);
@@ -63,6 +74,7 @@ const TodoPage = () => {
 			<div className={styles.wrapper}>
 				<div className={styles.content}>
 					<div className={styles.title}>Todo List</div>
+					{isEditModal && <TodoEdit todo={editTodo} />}
 
 					<ul className={styles.list}>
 						{todos.map((todo) => (
@@ -84,7 +96,13 @@ const TodoPage = () => {
 								<div className={styles.center}>
 									{item === todo.id && (
 										<>
-											<EditIcon className={`${styles.edit} ${styles.icon}`} />
+											<EditIcon
+												className={`${styles.edit} ${styles.icon}`}
+												onClick={() => {
+													setEditTodo(todo);
+													setEditModalHandler(true);
+												}}
+											/>
 
 											<DeleteRoundedIcon
 												className={`${styles.delete} ${styles.icon}`}
