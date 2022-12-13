@@ -8,6 +8,7 @@
 	height: 180px;
 	z-index: 20;
 	text-align: center;
+	transition: all 0.3s ease-out;
 
 	.title {
 		padding: 12px;
@@ -47,6 +48,41 @@
 				background-color: #bebebe;
 			}
 		}
+	}
+}
+
+.open {
+	opacity: 1;
+	animation: FadeIn 0.3s ease-in;
+}
+
+.close {
+	opacity: 0;
+	animation: FadeOut 0.3s ease-in;
+}
+
+@keyframes FadeIn {
+	0% {
+		opacity: 0;
+	}
+	1% {
+		opacity: 0;
+		transform: translate(-50%);
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes FadeOut {
+	0% {
+		opacity: 1;
+	}
+	90% {
+		transform: translate(-50%);
+	}
+	100% {
+		opacity: 0;
 	}
 }
 

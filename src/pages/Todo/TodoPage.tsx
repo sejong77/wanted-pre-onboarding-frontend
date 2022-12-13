@@ -7,6 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Transition } from 'react-transition-group';
 
 import TodoEdit from '../../components/TodoEdit/TodoEdit';
 
@@ -74,7 +75,10 @@ const TodoPage = () => {
 			<div className={styles.wrapper}>
 				<div className={styles.content}>
 					<div className={styles.title}>Todo List</div>
-					{isEditModal && <TodoEdit todo={editTodo} />}
+
+					<Transition unmountOnExit in={isEditModal} timeout={500}>
+						{(state) => <TodoEdit show={state} todo={editTodo} />}
+					</Transition>
 
 					<ul className={styles.list}>
 						{todos.map((todo) => (
