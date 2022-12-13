@@ -50,7 +50,7 @@ const TodoPage = () => {
 	};
 
 	const updateTodos = (id: number, todo: string, isCompleted: boolean) => {
-		callPutAPI(`todos/${id}`, { todo, isCompleted }).then((res) => {
+		callPutAPI(`todos/${id}`, { todo, isCompleted }).then(() => {
 			getTodos();
 		});
 	};
@@ -83,7 +83,7 @@ const TodoPage = () => {
 					<div className={styles.title}>Todo List</div>
 
 					<Transition unmountOnExit in={isEditModal} timeout={500}>
-						{(state) => <TodoEdit show={state} todo={editTodo} />}
+						{(state) => <TodoEdit show={state} todo={editTodo} update={updateTodos} />}
 					</Transition>
 
 					<ul className={styles.list}>
