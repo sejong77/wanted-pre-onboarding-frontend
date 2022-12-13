@@ -34,10 +34,10 @@
 				padding: 8px 12px;
 				border-radius: 6px;
 				color: #ffffff;
-			}
 
-			span:hover {
-				cursor: pointer;
+				&:hover {
+					cursor: pointer;
+				}
 			}
 
 			.edit {

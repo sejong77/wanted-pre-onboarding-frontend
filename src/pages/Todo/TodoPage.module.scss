@@ -47,11 +47,11 @@
 
 		.icon {
 			margin-right: 8px;
-		}
-	}
 
-	.icon:hover {
-		cursor: pointer;
+			&:hover {
+				cursor: pointer;
+			}
+		}
 	}
 
 	.edit:hover {
@@ -88,6 +88,10 @@
 	transform: translateX(-50%);
 	color: white;
 
+	&:hover {
+		cursor: pointer;
+	}
+
 	.createBtn {
 		background-color: #80e36c;
 		border-radius: 50%;
@@ -98,8 +102,4 @@
 		transform: rotate(45deg);
 		background-color: #f17384;
 	}
-}
-
-.btn__area:hover {
-	cursor: pointer;
 }
