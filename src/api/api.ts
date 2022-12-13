@@ -27,6 +27,15 @@ export const callGetAPI = async (url: string) => {
 	}
 };
 
+export const callPutAPI = async (url: string, params: any) => {
+	try {
+		const response = await API.put(url, params);
+		return response;
+	} catch (e: any) {
+		throw new Error(e);
+	}
+};
+
 export const callDeleteAPI = async (url: string) => {
 	try {
 		const response = await API.delete(url);
