@@ -11,7 +11,7 @@ import { Transition } from 'react-transition-group';
 
 import TodoEdit from '../../components/TodoEdit/TodoEdit';
 
-import { callDeleteAPI, callGetAPI, callPostAPI } from '../../api/api';
+import { callDeleteAPI, callGetAPI, callPostAPI, callPutAPI } from '../../api/api';
 import { TodoListProps } from '../../interfaces/interface';
 
 import ModalContext from '../../contexts/Modal/ModalContext';
@@ -45,6 +45,12 @@ const TodoPage = () => {
 	const createTodos = () => {
 		callPostAPI('/todos', { todo: createContent }).then((res) => {
 			console.log('createTodos: ', res.data);
+			getTodos();
+		});
+	};
+
+	const updateTodos = (id: number, todo: string, isCompleted: boolean) => {
+		callPutAPI(`todos/${id}`, { todo, isCompleted }).then((res) => {
 			getTodos();
 		});
 	};
@@ -90,11 +96,23 @@ const TodoPage = () => {
 							>
 								<div className={styles.center}>
 									{todo.isCompleted ? (
-										<CheckBoxIcon className={styles.icon} />
+										<CheckBoxIcon
+											className={styles.icon}
+											onClick={() => {
+												updateTodos(todo.id, todo.todo, false);
+											}}
+										/>
 									) : (
-										<CheckBoxOutlineBlankIcon className={styles.icon} />
+										<CheckBoxOutlineBlankIcon
+											className={styles.icon}
+											onClick={() => {
+												updateTodos(todo.id, todo.todo, true);
+											}}
+										/>
 									)}
-									{todo.todo}
+									<span className={`${todo.isCompleted ? styles.completed : styles.incomplete}`}>
+										{todo.todo}
+									</span>
 								</div>
 
 								<div className={styles.center}>

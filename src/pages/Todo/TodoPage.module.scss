@@ -45,6 +45,14 @@
 		align-items: center;
 		font-size: 18px;
 
+		.completed {
+			text-decoration: line-through;
+		}
+
+		.incomplete {
+			color: #000000;
+		}
+
 		.icon {
 			margin-right: 8px;
 
