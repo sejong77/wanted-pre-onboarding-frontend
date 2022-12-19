@@ -1,10 +1,11 @@
 import styles from './AuthPage.module.scss';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
 
-import { callAPI } from '../../api/api';
-import { setAccessToken } from '../../lib/AuthLocalStorage';
+import { callPostAPI } from '../../api/api';
+import { getAccessToken, setAccessToken } from '../../lib/AuthLocalStorage';
 
 const AuthPage = () => {
 	const [title, setTitle] = useState<string>('로그인');
@@ -13,11 +14,13 @@ const AuthPage = () => {
 		initialValue: { email: '', password: '', isEmailValid: false, isPasswordValid: false },
 	});
 
+	const navigate = useNavigate();
+
 	const onSubmitForm = () => {
 		if (title === '회원가입') {
-			callAPI('auth/signup', { email: values.email, password: values.password }).then(
+			callPostAPI('auth/signup', { email: values.email, password: values.password }).then(
 				(res) => {
-					console.log('여기 실행 되냐??', res);
+					console.log('회원가입 데이터: ', res);
 					alert('회원가입에 성공했습니다.');
 					setTitle('로그인');
 				},
@@ -27,11 +30,11 @@ const AuthPage = () => {
 				}
 			);
 		} else {
-			callAPI('auth/signin', { email: values.email, password: values.password }).then(
+			callPostAPI('auth/signin', { email: values.email, password: values.password }).then(
 				(res) => {
 					setAccessToken(res.data.access_token);
 					alert('로그인에 성공했습니다.');
-					console.log('로그인 데이터', res.data);
+					navigate('/todo');
 				},
 				(err) => {
 					alert('로그인에 실패했습니다.');
@@ -40,6 +43,12 @@ const AuthPage = () => {
 			);
 		}
 	};
+
+	useEffect(() => {
+		if (getAccessToken()) {
+			navigate('/todo');
+		}
+	}, [navigate]);
 
 	return (
 		<div className={styles.container}>
