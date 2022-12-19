@@ -21,10 +21,28 @@
 	}
 }
 
-.title {
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	margin: 12px;
-	font-size: 48px;
-	font-weight: bold;
+
+	.title {
+		font-size: 48px;
+		font-weight: bold;
+	}
+
+	.logout {
+		padding: 12px;
+		font-size: 16px;
+		border-radius: 5px;
+		background-color: #4dbeff;
+		color: #ffffff;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
 }
 
 .list {

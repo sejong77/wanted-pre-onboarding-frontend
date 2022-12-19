@@ -7,12 +7,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 import TodoEdit from '../../components/TodoEdit/TodoEdit';
 
 import { callDeleteAPI, callGetAPI, callPostAPI, callPutAPI } from '../../api/api';
 import { TodoListProps } from '../../interfaces/interface';
+import { removeToken } from '../../lib/AuthLocalStorage';
 
 import ModalContext from '../../contexts/Modal/ModalContext';
 
@@ -31,9 +33,16 @@ const TodoPage = () => {
 
 	const { isEditModal, setEditModalHandler } = useContext(ModalContext);
 
+	const navigate = useNavigate();
+
 	const onToggle = () => {
 		setToggle((prev) => !prev);
 		setCreateContent('');
+	};
+
+	const onLogout = () => {
+		removeToken();
+		navigate('/');
 	};
 
 	const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -80,7 +89,12 @@ const TodoPage = () => {
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
 				<div className={styles.content}>
-					<div className={styles.title}>Todo List</div>
+					<div className={styles.header}>
+						<span className={styles.title}>Todo List</span>
+						<span className={styles.logout} onClick={() => onLogout()}>
+							로그아웃
+						</span>
+					</div>
 
 					<Transition unmountOnExit in={isEditModal} timeout={500}>
 						{(state) => <TodoEdit show={state} todo={editTodo} update={updateTodos} />}
