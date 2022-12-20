@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { InputProps } from '../interfaces/interface';
+import { InputProps } from '@interfaces/interface';
 
 const useInput = ({ initialValue }: { initialValue: InputProps }) => {
 	const [values, setValues] = useState(initialValue);

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getAccessToken } from '../lib/AuthLocalStorage';
+import { getAccessToken } from '@lib/AuthLocalStorage';
 
 export const API = axios.create({
 	// baseURL: 'http://localhost:8000/',

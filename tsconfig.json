@@ -1,5 +1,6 @@
 {
 	"compileOnSave": true,
+	"extends": "./tsconfig.paths.json",
 	"compilerOptions": {
 		"target": "es2016",
 		"typeRoots": ["./node_modules/@types", "./types"],
