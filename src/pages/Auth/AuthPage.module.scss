@@ -30,11 +30,11 @@
 					border: 1px solid #9c9c9c;
 					margin-top: 5px;
 					box-sizing: border-box;
-				}
 
-				input:focus {
-					outline: 1px solid #4dbeff;
-					border: 1px solid #4dbeff;
+					&:focus {
+						outline: 1px solid #4dbeff;
+						border: 1px solid #4dbeff;
+					}
 				}
 			}
 
