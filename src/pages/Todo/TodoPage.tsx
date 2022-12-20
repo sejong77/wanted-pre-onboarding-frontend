@@ -10,13 +10,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
-import TodoEdit from '../../components/TodoEdit/TodoEdit';
+import TodoEdit from '@components/TodoEdit/TodoEdit';
+import ModalContext from '@contexts/Modal/ModalContext';
 
-import { callDeleteAPI, callGetAPI, callPostAPI, callPutAPI } from '../../api/api';
-import { TodoListProps } from '../../interfaces/interface';
-import { removeToken } from '../../lib/AuthLocalStorage';
-
-import ModalContext from '../../contexts/Modal/ModalContext';
+import { callDeleteAPI, callGetAPI, callPostAPI, callPutAPI } from '@api/api';
+import { TodoListProps } from '@interfaces/interface';
+import { removeToken } from '@lib/AuthLocalStorage';
 
 const TodoPage = () => {
 	const [editTodo, setEditTodo] = useState<TodoListProps>({

@@ -5,8 +5,8 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 
 import { useContext, useState } from 'react';
 
-import ModalContext from '../../contexts/Modal/ModalContext';
-import { TodoListProps } from '../../interfaces/interface';
+import ModalContext from '@contexts/Modal/ModalContext';
+import { TodoListProps } from '@interfaces/interface';
 
 const TodoEdit = ({
 	todo,
