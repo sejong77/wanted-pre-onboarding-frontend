@@ -2,7 +2,6 @@ import axios from 'axios';
 import { getAccessToken } from '@lib/AuthLocalStorage';
 
 export const API = axios.create({
-	// baseURL: 'http://localhost:8000/',
 	baseURL: 'https://pre-onboarding-selection-task.shop',
 	headers: {
 		'Content-Type': 'application/json',
