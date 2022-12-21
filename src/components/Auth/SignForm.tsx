@@ -71,6 +71,9 @@ const SignForm = () => {
 					placeholder="email"
 					onChange={onChangeHandler}
 				/>
+				{!values.isEmailValid && values.email && (
+					<S.ErrorMessage>이메일에는 @가 포함되어야 합니다.</S.ErrorMessage>
+				)}
 
 				<S.Input
 					type="password"
@@ -79,6 +82,9 @@ const SignForm = () => {
 					placeholder="password"
 					onChange={onChangeHandler}
 				/>
+				{!values.isPasswordValid && values.password && (
+					<S.ErrorMessage>비밀번호는 8자리 이상이어야 합니다.</S.ErrorMessage>
+				)}
 
 				<S.Button isEmailValid={values.isEmailValid} isPasswordValid={values.isPasswordValid}>
 					{title}
