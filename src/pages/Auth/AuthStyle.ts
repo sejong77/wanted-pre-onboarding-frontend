@@ -7,6 +7,7 @@ export const AuthContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	background-color: #d5e9ee;
 `;
 
 export const AuthWrapper = styled.div`
@@ -15,6 +16,7 @@ export const AuthWrapper = styled.div`
 	border: 1px solid #9c9c9c;
 	text-align: center;
 	padding: 20px 0;
+	background-color: #ffffff;
 `;
 
 export const Title = styled.p`
@@ -23,7 +25,7 @@ export const Title = styled.p`
 `;
 
 export const Form = styled.form`
-	padding: 35px 40px 25px 40px;
+	padding: 10px 40px 30px 40px;
 `;
 
 export const Input = styled.input`
@@ -31,8 +33,7 @@ export const Input = styled.input`
 	width: 100%;
 	background-color: #fafafa;
 	border: 1px solid #9c9c9c;
-	margin-top: 5px;
-	margin-bottom: 18px;
+	margin-top: 28px;
 	box-sizing: border-box;
 
 	&:focus {
@@ -41,11 +42,19 @@ export const Input = styled.input`
 	}
 `;
 
+export const ErrorMessage = styled.p`
+	text-align: left;
+	font-size: 13px;
+	padding: 4px;
+	color: red;
+`;
+
 export const Button = styled.button<InputProps>`
 	border: none;
 	border-radius: 5px;
 	width: 100%;
 	padding: 12px;
+	margin-top: 28px;
 
 	background-color: ${(props) =>
 		props.isEmailValid && props.isPasswordValid ? '#4dbeff' : '#c3c3c3'};
