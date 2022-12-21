@@ -2,11 +2,11 @@ import * as S from '@pages/Auth/AuthStyle';
 
 import { callPostAPI } from '@api/api';
 import { setAccessToken } from '@lib/AuthLocalStorage';
+import Mode from './Mode';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useInput from '@hooks/useInput';
-import Mode from './Mode';
 
 const SignForm = () => {
 	const navigate = useNavigate();
@@ -18,6 +18,12 @@ const SignForm = () => {
 
 	const changeMode = (title: string) => {
 		setTitle(title);
+	};
+
+	const checkToActivateBtn = () => {
+		if (values.isEmailValid && values.isPasswordValid) {
+			onSubmitForm();
+		}
 	};
 
 	const onSubmitForm = () => {
@@ -55,7 +61,7 @@ const SignForm = () => {
 			<S.Form
 				onSubmit={(e: React.FormEvent) => {
 					e.preventDefault();
-					onSubmitForm();
+					checkToActivateBtn();
 				}}
 			>
 				<S.Input
