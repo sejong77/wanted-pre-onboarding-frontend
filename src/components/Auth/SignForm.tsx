@@ -59,7 +59,7 @@ const SignForm = () => {
 		<>
 			<S.Title>{title}</S.Title>
 
-			<S.Form
+			<form
 				onSubmit={(e: React.FormEvent) => {
 					e.preventDefault();
 					checkToActivateBtn();
@@ -90,7 +90,7 @@ const SignForm = () => {
 				<S.Button isEmailValid={values.isEmailValid} isPasswordValid={values.isPasswordValid}>
 					{title}
 				</S.Button>
-			</S.Form>
+			</form>
 
 			<Mode title={title} changeMode={changeMode} />
 		</>
