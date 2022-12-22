@@ -2,12 +2,21 @@ import axios from 'axios';
 import { getAccessToken } from '@lib/AuthLocalStorage';
 
 export const API = axios.create({
-	// baseURL: 'http://localhost:8000/',
 	baseURL: 'https://pre-onboarding-selection-task.shop',
 	headers: {
 		'Content-Type': 'application/json',
-		Authorization: `Bearer ${getAccessToken()}`,
+		'Access-Control-Allow-Origin': '*',
 	},
+});
+
+API.interceptors.request.use((config) => {
+	const token = getAccessToken();
+
+	if (token && config.headers) {
+		config.headers['Authorization'] = `Bearer ${token}`;
+	}
+
+	return config;
 });
 
 export const callPostAPI = async (url: string, params: any) => {

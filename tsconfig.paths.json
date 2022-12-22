@@ -4,6 +4,7 @@
 		"paths": {
 			"@api/*": ["src/api/*"],
 			"@components/*": ["src/components/*"],
+			"@constants/*": ["src/constants/*"],
 			"@contexts/*": ["src/contexts/*"],
 			"@fonts/*": ["src/fonts/*"],
 			"@hooks/*": ["src/hooks/*"],
