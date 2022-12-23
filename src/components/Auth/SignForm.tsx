@@ -65,27 +65,28 @@ const SignForm = () => {
 					checkToActivateBtn();
 				}}
 			>
-				<S.Input
-					type="text"
-					name="email"
-					value={values.email}
-					placeholder="email"
-					onChange={onChangeHandler}
-				/>
-				{!values.isEmailValid && values.email && (
-					<S.ErrorMessage>이메일에는 @가 포함되어야 합니다.</S.ErrorMessage>
-				)}
+				<S.InputArea>
+					<S.Label>Email</S.Label>
+					<S.Input type="text" name="email" value={values.email} onChange={onChangeHandler} />
 
-				<S.Input
-					type="password"
-					name="password"
-					value={values.password}
-					placeholder="password"
-					onChange={onChangeHandler}
-				/>
-				{!values.isPasswordValid && values.password && (
-					<S.ErrorMessage>비밀번호는 8자리 이상이어야 합니다.</S.ErrorMessage>
-				)}
+					{!values.isEmailValid && values.email && (
+						<S.ErrorMessage>이메일에는 @가 포함되어야 합니다.</S.ErrorMessage>
+					)}
+				</S.InputArea>
+
+				<S.InputArea>
+					<S.Label>Password</S.Label>
+					<S.Input
+						type="password"
+						name="password"
+						value={values.password}
+						onChange={onChangeHandler}
+					/>
+
+					{!values.isPasswordValid && values.password && (
+						<S.ErrorMessage>비밀번호는 8자리 이상이어야 합니다.</S.ErrorMessage>
+					)}
+				</S.InputArea>
 
 				<S.Button isEmailValid={values.isEmailValid} isPasswordValid={values.isPasswordValid}>
 					{title}
