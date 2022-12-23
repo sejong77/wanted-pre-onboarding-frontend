@@ -10,7 +10,8 @@
 			"@hooks/*": ["src/hooks/*"],
 			"@interfaces/*": ["src/interfaces/*"],
 			"@lib/*": ["src/lib/*"],
-			"@pages/*": ["src/pages/*"]
+			"@pages/*": ["src/pages/*"],
+			"@styles/*": ["src/styles/*"]
 		}
 	}
 }

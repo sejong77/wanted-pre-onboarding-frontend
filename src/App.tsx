@@ -1,8 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import './App.module.scss';
-import './fonts/Font.scss';
-
 import AuthPage from '@pages/Auth/AuthPage';
 import TodoPage from '@pages/Todo/TodoPage';
 
