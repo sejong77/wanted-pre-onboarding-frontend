@@ -1,3 +1,5 @@
+import { DefaultTheme } from 'styled-components';
+
 const fontSize = {
 	xs: '0.5rem',
 	sm: '0.75rem',
@@ -22,7 +24,10 @@ const color = {
 	background: '#f5f5f5',
 };
 
-const theme = {
+export type colorType = typeof color;
+export type fontSizeType = typeof fontSize;
+
+const theme: DefaultTheme = {
 	fontSize,
 	color,
 };
