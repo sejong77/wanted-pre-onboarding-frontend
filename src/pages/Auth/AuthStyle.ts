@@ -69,10 +69,6 @@ export const Button = styled.button<InputProps>`
 		props.isEmailValid && props.isPasswordValid ? '#3080bf' : '#c3c3c3'};
 
 	color: ${(props) => (props.isEmailValid && props.isPasswordValid ? '#ffffff' : '#777')};
-
-	&:hover {
-		cursor: pointer;
-	}
 `;
 
 export const AuthMode = styled.p`
