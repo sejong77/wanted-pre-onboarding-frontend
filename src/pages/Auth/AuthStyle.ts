@@ -7,7 +7,7 @@ export const AuthContainer = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	background-color: #f5f5f5;
+	background-color: ${({ theme }) => theme.color.background};
 `;
 
 export const AuthWrapper = styled.div`
@@ -23,7 +23,7 @@ export const AuthWrapper = styled.div`
 export const Title = styled.p`
 	font-size: 40px;
 	font-weight: bold;
-	color: #3080bf;
+	color: ${({ theme }) => theme.color.darkBlue};
 	margin-bottom: 12px;
 `;
 
@@ -34,27 +34,24 @@ export const InputArea = styled.div`
 
 export const Label = styled.label`
 	font-size: 18px;
-	color: #3080bf;
+	color: ${({ theme }) => theme.color.darkBlue};
 `;
 
 export const Input = styled.input`
 	padding: 12px 7px;
 	width: 100%;
-	background-color: #fafafa;
-	border: 1px solid #9c9c9c;
 	border-radius: 5px;
 	font-size: 16px;
 
 	&:focus {
-		outline: 1px solid #4dbeff;
-		border: 1px solid #4dbeff;
+		border: 1px solid ${({ theme }) => theme.color.lightBlue};
 	}
 `;
 
 export const ErrorMessage = styled.p`
 	font-size: 13px;
 	padding: 4px;
-	color: red;
+	color: ${({ theme }) => theme.color.red};
 `;
 
 export const Button = styled.button<InputProps>`
@@ -66,13 +63,15 @@ export const Button = styled.button<InputProps>`
 	font-size: 16px;
 
 	background-color: ${(props) =>
-		props.isEmailValid && props.isPasswordValid ? '#3080bf' : '#c3c3c3'};
+		props.isEmailValid && props.isPasswordValid
+			? props.theme.color.darkBlue
+			: props.theme.color.gray};
 
-	color: ${(props) => (props.isEmailValid && props.isPasswordValid ? '#ffffff' : '#777')};
+	color: ${({ theme }) => theme.color.white};
 `;
 
 export const AuthMode = styled.p`
-	color: #3080bf;
+	color: ${({ theme }) => theme.color.darkBlue};
 
 	&:hover {
 		cursor: pointer;

@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
   input {
     outline: none;
     border-radius: 5px;
-    border: 1px solid #9c9c9c;
+    border: 1px solid ${({ theme }) => theme.color.gray};
   }
 
   button:hover {
