@@ -16,16 +16,25 @@ export const AuthWrapper = styled.div`
 	width: 100%;
 	height: 100%;
 	border-radius: 10px;
-	text-align: center;
 	padding: 20px;
+	text-align: center;
 `;
 
 export const Title = styled.p`
 	font-size: 40px;
 	font-weight: bold;
 	color: #3080bf;
-	text-align: left;
 	margin-bottom: 12px;
+`;
+
+export const InputArea = styled.div`
+	margin-top: 28px;
+	text-align: left;
+`;
+
+export const Label = styled.label`
+	font-size: 18px;
+	color: #3080bf;
 `;
 
 export const Input = styled.input`
@@ -33,21 +42,16 @@ export const Input = styled.input`
 	width: 100%;
 	background-color: #fafafa;
 	border: 1px solid #9c9c9c;
-	box-sizing: border-box;
+	border-radius: 5px;
 	font-size: 16px;
 
 	&:focus {
 		outline: 1px solid #4dbeff;
 		border: 1px solid #4dbeff;
 	}
-
-	&:last-of-type {
-		margin-top: 28px;
-	}
 `;
 
 export const ErrorMessage = styled.p`
-	text-align: left;
 	font-size: 13px;
 	padding: 4px;
 	color: red;
