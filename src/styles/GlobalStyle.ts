@@ -22,6 +22,12 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
+  input {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #9c9c9c;
+  }
+
   button:hover {
     cursor:pointer;
   }
