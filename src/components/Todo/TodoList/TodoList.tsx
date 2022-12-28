@@ -1,29 +1,28 @@
 import * as T from './style';
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
+import { dispatchContext, todoContext } from '@contexts/TodoContext';
 
 import { callGetAPI } from '@api/api';
 import TodoItem from '../TodoItem/TodoItem';
-import { TodoListProps } from '@interfaces/interface';
 
 const TodoList = () => {
-	const [todos, setTodos] = useState<TodoListProps[]>([]);
+	const todoData = useContext(todoContext);
+	const dispatch = useContext(dispatchContext);
 
-	const getTodos = () => {
+	const getTodos = useCallback(() => {
 		callGetAPI('/todos').then((res) => {
-			console.log('getTodos: ', res.data);
-
-			setTodos(res.data);
+			dispatch({ type: 'INIT', initTodos: res.data });
 		});
-	};
+	}, [dispatch]);
 
 	useEffect(() => {
 		getTodos();
-	}, []);
+	}, [getTodos]);
 
 	return (
 		<T.List>
-			{todos.map((todo) => (
+			{todoData.map((todo) => (
 				<TodoItem key={todo.id} todo={todo} />
 			))}
 		</T.List>
