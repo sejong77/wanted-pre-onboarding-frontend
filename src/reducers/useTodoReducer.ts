@@ -2,6 +2,7 @@ import { TodoListProps } from '@interfaces/interface';
 
 export type actionType = {
 	type: string;
+	id?: number;
 	todo?: TodoListProps;
 	initTodos?: TodoListProps[];
 };
@@ -18,7 +19,7 @@ const todoReducer = (state: TodoListProps[], action: actionType) => {
 			return state.map((task) => (task.id === action.todo.id ? { ...action.todo } : task));
 
 		case 'DELETE':
-			return state.filter((task) => task.id === action.todo.id);
+			return state.filter((task) => task.id !== action.id);
 	}
 };
 
