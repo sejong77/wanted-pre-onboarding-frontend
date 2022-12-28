@@ -1,7 +1,5 @@
-import styles from './TodoEdit.module.scss';
-
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import * as E from './style';
+import * as T from '@components/Todo/TodoItem/style';
 
 import { useContext, useState } from 'react';
 
@@ -23,60 +21,45 @@ const TodoEdit = ({
 
 	return (
 		<>
-			<div className={styles.backdrop}></div>
+			<E.BackDrop />
 
-			<div
-				className={`${styles.container} ${
-					show === 'entering' ? styles.open : show === 'exiting' ? styles.close : null
-				}`}
-			>
-				<p className={styles.title}>수정하기</p>
+			<E.Container show={show}>
+				<E.Title>수정하기</E.Title>
 
-				<div className={styles.wrapper}>
-					<input
-						type="text"
-						value={inputValue}
-						onChange={(e) => {
-							setInputValue(e.target.value);
-						}}
-					/>
+				<E.Wrapper>
+					<E.Input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
 
-					<div className={styles.checkbox__area}>
+					<E.CheckBoxWrapper>
 						{isCompleted ? (
-							<CheckBoxIcon
-								className={styles.icon}
+							<T.CheckBox
 								onClick={() => {
 									setIsCompleted(false);
 								}}
 							/>
 						) : (
-							<CheckBoxOutlineBlankIcon
-								className={styles.icon}
+							<T.CheckBoxOutline
 								onClick={() => {
 									setIsCompleted(true);
 								}}
 							/>
 						)}
 						완료 여부
-					</div>
+					</E.CheckBoxWrapper>
 
-					<div className={styles.btn__area}>
-						<span
-							className={styles.edit}
+					<E.BtnWrapper>
+						<E.EditBtn
 							onClick={() => {
 								update(todo.id, inputValue, isCompleted);
 								setEditModalHandler(false);
 							}}
 						>
 							수정
-						</span>
+						</E.EditBtn>
 
-						<span className={styles.cancel} onClick={() => setEditModalHandler(false)}>
-							취소
-						</span>
-					</div>
-				</div>
-			</div>
+						<E.CancelBtn onClick={() => setEditModalHandler(false)}>취소</E.CancelBtn>
+					</E.BtnWrapper>
+				</E.Wrapper>
+			</E.Container>
 		</>
 	);
 };
