@@ -8,6 +8,6 @@ export interface InputProps {
 export interface TodoListProps {
 	id?: number;
 	todo?: string;
-	isCompleted?: false;
+	isCompleted?: boolean;
 	userId?: number;
 }
