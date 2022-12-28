@@ -26,7 +26,7 @@ const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 	};
 
 	return (
-		<T.Item key={todo.id} onMouseEnter={() => setItem(todo.id)} onMouseLeave={() => setItem(0)}>
+		<T.Item onMouseEnter={() => setItem(todo.id)} onMouseLeave={() => setItem(0)}>
 			<Transition unmountOnExit in={isEditModal} timeout={500}>
 				{(state) => <TodoEdit show={state} todo={editTodo} update={updateTodos} />}
 			</Transition>

@@ -3,8 +3,8 @@ import * as T from './style';
 import { useEffect, useState } from 'react';
 
 import { callGetAPI } from '@api/api';
-import { TodoListProps } from '@interfaces/interface';
 import TodoItem from '../TodoItem/TodoItem';
+import { TodoListProps } from '@interfaces/interface';
 
 const TodoList = () => {
 	const [todos, setTodos] = useState<TodoListProps[]>([]);
@@ -12,6 +12,7 @@ const TodoList = () => {
 	const getTodos = () => {
 		callGetAPI('/todos').then((res) => {
 			console.log('getTodos: ', res.data);
+
 			setTodos(res.data);
 		});
 	};
@@ -23,7 +24,7 @@ const TodoList = () => {
 	return (
 		<T.List>
 			{todos.map((todo) => (
-				<TodoItem todo={todo} />
+				<TodoItem key={todo.id} todo={todo} />
 			))}
 		</T.List>
 	);
