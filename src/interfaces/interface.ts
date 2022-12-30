@@ -11,3 +11,8 @@ export interface TodoListProps {
 	isCompleted?: boolean;
 	userId?: number;
 }
+
+export interface AppProviderProps {
+	contexts: Array<React.JSXElementConstructor<React.PropsWithChildren<any>>>;
+	children: React.ReactNode;
+}
