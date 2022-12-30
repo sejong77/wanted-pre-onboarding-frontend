@@ -6,6 +6,8 @@ import App from './App';
 import './fonts/Font.scss';
 
 import ModalProvider from '@contexts/Modal/ModalProvider';
+import AppProvider from '@contexts/AppProvider';
+import { TodoItemProvider } from '@contexts/Todo/TodoItemContext';
 
 import GlobalStyle from '@styles/GlobalStyle';
 import theme from '@styles/theme';
@@ -13,11 +15,11 @@ import theme from '@styles/theme';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<StyledEngineProvider injectFirst>
-		<ModalProvider>
+		<AppProvider contexts={[TodoItemProvider, ModalProvider]}>
 			<ThemeProvider theme={theme}>
 				<GlobalStyle />
 				<App />
 			</ThemeProvider>
-		</ModalProvider>
+		</AppProvider>
 	</StyledEngineProvider>
 );
