@@ -1,7 +1,8 @@
 import * as T from './style';
 
 import { useContext, useEffect, useCallback } from 'react';
-import { dispatchContext, todoContext } from '@contexts/TodoContext';
+
+import { dispatchContext, todoContext } from '@contexts/Todo/TodoContext';
 
 import { callGetAPI } from '@api/api';
 import TodoItem from '../TodoItem/TodoItem';
