@@ -1,7 +1,7 @@
 import { TodoListProps } from '@interfaces/interface';
 import { createContext, useState } from 'react';
 
-export const todoItemContext = createContext({
+export const TodoItemContext = createContext({
 	item: {},
 	setItemHandler: (data: TodoListProps) => {},
 });
@@ -14,6 +14,6 @@ export const TodoItemProvider = ({ children }: { children: React.ReactNode }) =>
 	};
 
 	return (
-		<todoItemContext.Provider value={{ item, setItemHandler }}>{children}</todoItemContext.Provider>
+		<TodoItemContext.Provider value={{ item, setItemHandler }}>{children}</TodoItemContext.Provider>
 	);
 };
