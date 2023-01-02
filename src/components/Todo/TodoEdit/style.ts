@@ -6,7 +6,7 @@ export const BackDrop = styled.div`
 	right: 0;
 	left: 0;
 	bottom: 0;
-	background-color: rgb(0, 0, 0, 0.1);
+	background-color: rgb(0, 0, 0, 0.4);
 `;
 
 export const Container = styled.div<{ show: string }>`
