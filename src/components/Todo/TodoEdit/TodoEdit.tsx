@@ -1,23 +1,28 @@
 import * as E from './style';
-import * as T from '@components/Todo/TodoItem/style';
 
 import { useContext, useState } from 'react';
 
 import ModalContext from '@contexts/Modal/ModalContext';
-import { TodoListProps } from '@interfaces/interface';
+import { dispatchContext } from '@contexts/Todo/TodoContext';
 
-const TodoEdit = ({
-	todo,
-	show,
-	update,
-}: {
-	todo: TodoListProps;
-	show: string;
-	update: (id: number, todo: string, isCompleted: boolean) => void;
-}) => {
+import { TodoListProps } from '@interfaces/interface';
+import { callPutAPI } from '@api/api';
+
+const TodoEdit = ({ todo, show }: { todo: TodoListProps; show: string }) => {
 	const { setEditModalHandler } = useContext(ModalContext);
+	const dispatch = useContext(dispatchContext);
+
 	const [inputValue, setInputValue] = useState<string>(todo.todo);
-	const [isCompleted, setIsCompleted] = useState<boolean>(todo.isCompleted);
+
+	const handleUpdate = (data: TodoListProps, input: string) => {
+		updateTodos(data.id, input, data.isCompleted);
+	};
+
+	const updateTodos = (id: number, todo: string, isCompleted: boolean) => {
+		callPutAPI(`todos/${id}`, { todo, isCompleted }).then((res) => {
+			dispatch({ type: 'EDIT', todo: res.data });
+		});
+	};
 
 	return (
 		<>
@@ -29,28 +34,11 @@ const TodoEdit = ({
 				<E.Wrapper>
 					<E.Input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
 
-					<E.CheckBoxWrapper>
-						{isCompleted ? (
-							<T.CheckBox
-								onClick={() => {
-									setIsCompleted(false);
-								}}
-							/>
-						) : (
-							<T.CheckBoxOutline
-								onClick={() => {
-									setIsCompleted(true);
-								}}
-							/>
-						)}
-						완료 여부
-					</E.CheckBoxWrapper>
-
 					<E.BtnWrapper>
 						<E.EditBtn
 							onClick={() => {
-								update(todo.id, inputValue, isCompleted);
 								setEditModalHandler(false);
+								handleUpdate(todo, inputValue);
 							}}
 						>
 							수정
