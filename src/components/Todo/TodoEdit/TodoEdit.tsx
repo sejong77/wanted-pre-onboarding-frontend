@@ -16,12 +16,23 @@ const TodoEdit = ({ todo, show }: { todo: TodoListProps; show: string }) => {
 
 	const handleUpdate = (data: TodoListProps, input: string) => {
 		updateTodos(data.id, input, data.isCompleted);
+		setEditModalHandler(false);
 	};
 
 	const updateTodos = (id: number, todo: string, isCompleted: boolean) => {
 		callPutAPI(`todos/${id}`, { todo, isCompleted }).then((res) => {
 			dispatch({ type: 'EDIT', todo: res.data });
 		});
+	};
+
+	const onKeyDown = (
+		e: React.KeyboardEvent<HTMLInputElement>,
+		todo: TodoListProps,
+		input: string
+	) => {
+		if (e.key === 'Enter') {
+			handleUpdate(todo, input);
+		}
 	};
 
 	return (
@@ -32,12 +43,16 @@ const TodoEdit = ({ todo, show }: { todo: TodoListProps; show: string }) => {
 				<E.Title>수정하기</E.Title>
 
 				<E.Wrapper>
-					<E.Input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+					<E.Input
+						type="text"
+						value={inputValue}
+						onChange={(e) => setInputValue(e.target.value)}
+						onKeyDown={(e) => onKeyDown(e, todo, inputValue)}
+					/>
 
 					<E.BtnWrapper>
 						<E.EditBtn
 							onClick={() => {
-								setEditModalHandler(false);
 								handleUpdate(todo, inputValue);
 							}}
 						>
