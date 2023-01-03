@@ -1,50 +1,45 @@
 import * as T from './style';
 
 import { useContext, useState } from 'react';
-import { Transition } from 'react-transition-group';
 
 import { TodoListProps } from '@interfaces/interface';
 import { callDeleteAPI, callPutAPI } from '@api/api';
-import TodoEdit from '../TodoEdit/TodoEdit';
+
 import ModalContext from '@contexts/Modal/ModalContext';
+import { dispatchContext } from '@contexts/Todo/TodoContext';
 
 const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 	const [item, setItem] = useState<number>(0);
-	const [editTodo, setEditTodo] = useState<TodoListProps>({
-		id: 0,
-		todo: '',
-		isCompleted: false,
-	});
-	const { isEditModal, setEditModalHandler } = useContext(ModalContext);
+	const [content, setContent] = useState<TodoListProps>(todo);
+
+	const dispatch = useContext(dispatchContext);
+	const { setEditModalHandler } = useContext(ModalContext);
 
 	const updateTodos = (id: number, todo: string, isCompleted: boolean) => {
-		callPutAPI(`todos/${id}`, { todo, isCompleted });
+		callPutAPI(`todos/${id}`, { todo, isCompleted }).then((res) => {
+			dispatch({ type: 'EDIT', todo: res.data });
+		});
+	};
+
+	const handleUpdate = (content: TodoListProps) => {
+		updateTodos(content.id, content.todo, content.isCompleted);
 	};
 
 	const deleteTodos = (id: number) => {
-		callDeleteAPI(`todos/${id}`);
+		callDeleteAPI(`todos/${id}`).then(() => {
+			dispatch({ type: 'DELETE', id });
+		});
+	};
+
+	const onCheckClick = () => {
+		setContent({ ...content, isCompleted: !todo.isCompleted });
+		handleUpdate({ ...content, isCompleted: !todo.isCompleted });
 	};
 
 	return (
 		<T.Item onMouseEnter={() => setItem(todo.id)} onMouseLeave={() => setItem(0)}>
-			<Transition unmountOnExit in={isEditModal} timeout={500}>
-				{(state) => <TodoEdit show={state} todo={editTodo} update={updateTodos} />}
-			</Transition>
-
-			<T.ItemCenter>
-				{todo.isCompleted ? (
-					<T.CheckBox
-						onClick={() => {
-							updateTodos(todo.id, todo.todo, false);
-						}}
-					/>
-				) : (
-					<T.CheckBoxOutline
-						onClick={() => {
-							updateTodos(todo.id, todo.todo, true);
-						}}
-					/>
-				)}
+			<T.ItemCenter onClick={() => onCheckClick()}>
+				{todo.isCompleted ? <T.CheckBox /> : <T.CheckBoxOutline />}
 				<T.TodoName todo={todo.todo} isCompleted={todo.isCompleted}>
 					{todo.todo}
 				</T.TodoName>
@@ -55,7 +50,6 @@ const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 					<>
 						<T.Edit
 							onClick={() => {
-								setEditTodo(todo);
 								setEditModalHandler(true);
 							}}
 						/>
