@@ -11,7 +11,6 @@ import { TodoItemContext } from '@contexts/Todo/TodoItemContext';
 
 const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 	const [item, setItem] = useState<number>(0);
-	const [content, setContent] = useState<TodoListProps>(todo);
 
 	const dispatch = useContext(dispatchContext);
 	const { setEditModalHandler } = useContext(ModalContext);
@@ -23,8 +22,8 @@ const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 		});
 	};
 
-	const handleUpdate = (content: TodoListProps) => {
-		updateTodos(content.id, content.todo, content.isCompleted);
+	const handleUpdate = (data: TodoListProps) => {
+		updateTodos(data.id, data.todo, data.isCompleted);
 	};
 
 	const deleteTodos = (id: number) => {
@@ -34,8 +33,7 @@ const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 	};
 
 	const onCheckClick = () => {
-		setContent({ ...content, isCompleted: !todo.isCompleted });
-		handleUpdate({ ...content, isCompleted: !todo.isCompleted });
+		handleUpdate({ ...todo, isCompleted: !todo.isCompleted });
 	};
 
 	return (
