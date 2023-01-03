@@ -7,6 +7,7 @@ import { callDeleteAPI, callPutAPI } from '@api/api';
 
 import ModalContext from '@contexts/Modal/ModalContext';
 import { dispatchContext } from '@contexts/Todo/TodoContext';
+import { TodoItemContext } from '@contexts/Todo/TodoItemContext';
 
 const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 	const [item, setItem] = useState<number>(0);
@@ -14,6 +15,7 @@ const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 
 	const dispatch = useContext(dispatchContext);
 	const { setEditModalHandler } = useContext(ModalContext);
+	const { setItemHandler } = useContext(TodoItemContext);
 
 	const updateTodos = (id: number, todo: string, isCompleted: boolean) => {
 		callPutAPI(`todos/${id}`, { todo, isCompleted }).then((res) => {
@@ -50,6 +52,7 @@ const TodoItem = ({ todo }: { todo: TodoListProps }) => {
 					<>
 						<T.Edit
 							onClick={() => {
+								setItemHandler(todo);
 								setEditModalHandler(true);
 							}}
 						/>
