@@ -1,6 +1,6 @@
 import * as E from './style';
 
-import { useContext, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 import ModalContext from '@contexts/Modal/ModalContext';
 import { dispatchContext } from '@contexts/Todo/TodoContext';
@@ -12,6 +12,7 @@ const TodoEdit = ({ todo, show }: { todo: TodoListProps; show: string }) => {
 	const { setEditModalHandler } = useContext(ModalContext);
 	const dispatch = useContext(dispatchContext);
 
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState<string>(todo.todo);
 
 	const handleUpdate = (data: TodoListProps, input: string) => {
@@ -44,7 +45,7 @@ const TodoEdit = ({ todo, show }: { todo: TodoListProps; show: string }) => {
 
 				<E.Wrapper>
 					<E.Input
-						type="text"
+						ref={inputRef}
 						value={inputValue}
 						onChange={(e) => setInputValue(e.target.value)}
 						onKeyDown={(e) => onKeyDown(e, todo, inputValue)}
