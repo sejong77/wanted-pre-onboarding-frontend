@@ -6,8 +6,13 @@ export interface InputProps {
 }
 
 export interface TodoListProps {
-	id: number;
-	todo: string;
-	isCompleted: false;
+	id?: number;
+	todo?: string;
+	isCompleted?: boolean;
 	userId?: number;
+}
+
+export interface AppProviderProps {
+	contexts: Array<React.JSXElementConstructor<React.PropsWithChildren<any>>>;
+	children: React.ReactNode;
 }
