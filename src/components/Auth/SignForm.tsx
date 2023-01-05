@@ -31,10 +31,10 @@ const SignForm = () => {
 	const onSubmitForm = () => {
 		if (title === '회원가입') {
 			callPostAPI('auth/signup', { email: values.email, password: values.password }).then(
-				(res) => {
-					console.log('회원가입 데이터: ', res);
+				() => {
 					alert(SIGN_UP.SUCCESS);
 					setTitle('로그인');
+					onResetHandler();
 				},
 				(err) => {
 					alert(SIGN_UP.FAIL);
