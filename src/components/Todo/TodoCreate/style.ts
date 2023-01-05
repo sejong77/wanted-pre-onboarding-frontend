@@ -30,7 +30,7 @@ export const BtnWrapper = styled.div`
 	}
 `;
 
-export const Button = styled(AddRoundedIcon)<{ toggle: boolean }>`
+export const Button = styled(AddRoundedIcon)<{ toggle: string }>`
 	background-color: ${({ toggle }) => (toggle ? theme.color.pink : theme.color.lightGreen)};
 	border-radius: 50%;
 	transition: transform 240ms ease-in-out;

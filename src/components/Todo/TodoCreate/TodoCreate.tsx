@@ -7,14 +7,14 @@ import { dispatchContext } from '@contexts/Todo/TodoContext';
 import { useEffect } from 'react';
 
 const TodoCreate = () => {
-	const [toggle, setToggle] = useState<boolean>(false);
+	const [toggle, setToggle] = useState<string>('');
 	const [content, setContent] = useState<string>('');
 
 	const inputRef = useRef<HTMLInputElement>(null);
 	const dispatch = useContext(dispatchContext);
 
 	const onToggle = () => {
-		setToggle((prev) => !prev);
+		setToggle((prev) => (prev === '' ? 'open' : ''));
 		setContent('');
 	};
 
