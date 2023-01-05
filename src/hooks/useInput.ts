@@ -18,7 +18,16 @@ const useInput = ({ initialValue }: { initialValue: InputProps }) => {
 		});
 	};
 
-	return { values, onChangeHandler };
+	const onResetHandler = () => {
+		setValues(() => {
+			return {
+				email: '',
+				password: '',
+			};
+		});
+	};
+
+	return { values, onChangeHandler, onResetHandler };
 };
 
 export default useInput;

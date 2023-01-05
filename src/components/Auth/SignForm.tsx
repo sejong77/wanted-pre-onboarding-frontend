@@ -13,12 +13,13 @@ const SignForm = () => {
 	const navigate = useNavigate();
 	const [title, setTitle] = useState<string>('로그인');
 
-	const { values, onChangeHandler } = useInput({
+	const { values, onChangeHandler, onResetHandler } = useInput({
 		initialValue: { email: '', password: '', isEmailValid: false, isPasswordValid: false },
 	});
 
 	const changeMode = (title: string) => {
 		setTitle(title);
+		onResetHandler();
 	};
 
 	const checkToActivateBtn = () => {
