@@ -2,10 +2,9 @@ import axios from 'axios';
 import { getAccessToken } from '@lib/AuthLocalStorage';
 
 const APIURL = process.env.REACT_APP_API_URL;
-const PROXY = window.location.hostname === 'localhost' ? APIURL : '/proxy';
 
 export const API = axios.create({
-	baseURL: PROXY,
+	baseURL: APIURL,
 	headers: {
 		'Content-Type': 'application/json',
 		'Access-Control-Allow-Origin': '*',
