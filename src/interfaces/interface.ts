@@ -1,8 +1,8 @@
 export interface InputProps {
 	email?: string;
 	password?: string;
-	isEmailValid: boolean;
-	isPasswordValid: boolean;
+	isEmailValid?: boolean;
+	isPasswordValid?: boolean;
 }
 
 export interface TodoListProps {
