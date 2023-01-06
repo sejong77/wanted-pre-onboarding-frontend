@@ -104,6 +104,8 @@ src
 
 <img src="https://user-images.githubusercontent.com/68320595/210747113-1787ad80-e594-47c1-adf2-ed7944afe080.gif" width="420" height="450" align="left" />
 
+
+
 ☑️ **Assignment 4**
 
 - `/todo` 경로에 접속할 경우 투두 리스트 목록 렌더링 구현
@@ -127,7 +129,7 @@ src
 ## 4. 프로젝트 실행 및 설치
 
 1. 해당 Repositry 클론 받아서 로컬에 설치
-2. root 경로에 .env 파일 생성
+2. root 경로에 .env 파일 생성 후 아래 환경 변수 작성
 
 ``` 
 REACT_APP_API_URL=https://pre-onboarding-selection-task.shop
@@ -153,3 +155,4 @@ $ npm start
 
 Axios, react-router-dom, jwt-decode
 styled-components, mui, craco
+
