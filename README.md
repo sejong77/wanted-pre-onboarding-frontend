@@ -102,9 +102,9 @@ src
 
 ## 🌕 투두 리스트
 
-<img src="https://user-images.githubusercontent.com/68320595/210747113-1787ad80-e594-47c1-adf2-ed7944afe080.gif" width="420" height="450" align="left" />
+<img src="https://user-images.githubusercontent.com/68320595/210747113-1787ad80-e594-47c1-adf2-ed7944afe080.gif" width="420" height="450" align="left"/>
 
-
+<br/>
 
 ☑️ **Assignment 4**
 
@@ -119,7 +119,7 @@ src
 - 수정 버튼 클릭하면 수정 모달창 띄우고 입력창에 수정할 내용 입력 및 취소 기능 구현
 - 삭제 버튼 클릭하면 해당 리스트 항목 삭제 구현
 
-➕ **추가적인 구현 사항**
+ ➕ **추가적인 구현 사항**
 
 - 로그아웃 기능 구현
 - 로그아웃 버튼 클릭 시 로컬스토리지에 저장된 토큰 삭제 및 `/` 경로로 리다이렉트
