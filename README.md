@@ -102,9 +102,9 @@ src
 
 ## 🌕 투두 리스트
 
-<img src="https://user-images.githubusercontent.com/68320595/210747113-1787ad80-e594-47c1-adf2-ed7944afe080.gif" width="420" height="450" align="left"/>
+<img src="https://user-images.githubusercontent.com/68320595/210747113-1787ad80-e594-47c1-adf2-ed7944afe080.gif" width="420" height="450" />
 
-<br/>
+
 
 ☑️ **Assignment 4**
 
