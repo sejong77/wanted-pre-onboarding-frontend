@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { StyledEngineProvider } from '@mui/material';
 
 import App from './App';
-import './fonts/Font.scss';
+import './fonts/Font.css';
 
 import ModalProvider from '@contexts/Modal/ModalProvider';
 import AppProvider from '@contexts/AppProvider';
