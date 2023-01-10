@@ -8,6 +8,8 @@
 
 📌 https://todoapp-sejong77.netlify.app
 
+## 📃 [프로젝트 리뷰 문서](https://github.com/sejong77/Project-Review/blob/master/%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9/%EC%9B%90%ED%8B%B0%EB%93%9C%20%ED%94%84%EB%A6%AC%EC%98%A8%EB%B3%B4%EB%94%A9%20%EC%82%AC%EC%A0%84%EA%B3%BC%EC%A0%9C.md)
+
 
 
 ## 2. 프로젝트 구조
